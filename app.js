@@ -24,6 +24,13 @@ let book3 = {
 //DOM selection
 
 const container = document.querySelector(".container");
+const addButton = document.querySelector(".add-book");
+const popUp = document.querySelector(".pop-up");
+const addBookButton = document.querySelector(".final-add-book")
+const bookNameInput = document.querySelector("#name");
+const bookAuthorInput = document.querySelector("#author");
+const bookPagesInput = document.querySelector("#pages");
+const bookReadInput = document.querySelector("#read");
 
 //Book object construction and storage
 
@@ -38,22 +45,52 @@ function Book(name,author,pages,read) {
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
+  displayCard(book);
 }
 
-//
+//Book display
 
-function showCard() {
+function displayCard(book) {
     let card = document.createElement("div");
     card.classList.add("card");
 
     let bookTitle = document.createElement("div");
     bookTitle.classList.add("book-title");
-    bookTitle.textContent = "Laith";
+    bookTitle.textContent = book.name;
     card.appendChild(bookTitle);
+
+    let bookAuthor = document.createElement("div");
+    bookTitle.classList.add("book-author");
+    bookTitle.textContent = book.author;
+    card.appendChild(bookAuthor);
+
+    let bookPages = document.createElement("div");
+    bookTitle.classList.add("book-pages");
+    bookTitle.textContent = book.pages;
+    card.appendChild(bookPages);
+
+    let bookRead = document.createElement("div");
+    bookTitle.classList.add("book-read");
+    bookTitle.textContent = book.read;
+    card.appendChild(bookRead);
 
 
     container.appendChild(card);
 }
 
-showCard();
+//Plus button
+
+addButton.addEventListener("click", (e) => {
+    popUp.classList.add("active");
+})
+
+addBookButton.addEventListener("click", (e) => {
+    let nameOfBook = bookNameInput.value;
+    let authorOfBook = bookAuthorInput.value;
+    let NumOfPages = bookPagesInput.value;
+    let readStatus = bookReadInput.checked;
+
+    addBookToLibrary(new Book(nameOfBook, authorOfBook, NumOfPages, readStatus));
+    popUp.classList.remove("active");
+})
 

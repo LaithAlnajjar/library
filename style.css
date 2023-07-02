@@ -84,11 +84,10 @@ body {
 
 .main-header {
     display: flex;
-    background-color: black;
-    width: 100vw;
+    background-color: #312244;
     height: 15vh;
     align-items: center;
-    padding: 70px;
+    padding: 70px 350px;
     color: white;
     font-size: 2rem;
     font-weight: 800;
@@ -96,14 +95,76 @@ body {
 }
 
 .container {
-    background-color: yellow;
+    position: relative;
+    padding: 50px 350px;
+    background-color: black;
     flex-grow: 1;
     display: grid;
-    padding: 50px;
     gap: 20px;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
+    
 }
 
 .card {
-    background-color: white;
+    background-color: rgb(136, 136, 136);
+    color: white;
+    padding: 50px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.3rem;
+    border-radius: 10px;
+    height: 36vh;
+    border-left: 9px solid #312244;
+}
+
+.add-book {
+  position: absolute;
+  top: 85%;
+  left: 85%;
+  display: grid;
+  place-content: center;
+  background-color: #312244;
+  color: white;
+  border-radius: 100%;
+  width: 70px;
+  height: 70px;
+  border: none;
+  font-size: 3rem;
+  font-weight: 900;
+}
+
+.pop-up {
+  display: grid;
+  place-content: center;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  transform: translateY(-50%);
+  width: 0%;
+  height: 0%;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.active {
+  width: 700px;
+  height: 600px;
+  transition: 600ms;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 50px;
+}
+
+.input {
+  display: flex;
+  align-items: space-between;
+  gap: 10px;
 }
