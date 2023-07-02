@@ -31,6 +31,7 @@ const bookNameInput = document.querySelector("#name");
 const bookAuthorInput = document.querySelector("#author");
 const bookPagesInput = document.querySelector("#pages");
 const bookReadInput = document.querySelector("#read");
+const addForm = document.querySelector("form");
 
 //Book object construction and storage
 
@@ -85,12 +86,20 @@ addButton.addEventListener("click", (e) => {
 })
 
 addBookButton.addEventListener("click", (e) => {
-    let nameOfBook = bookNameInput.value;
+
+    if(addForm.checkValidity()){
+        let nameOfBook = bookNameInput.value;
     let authorOfBook = bookAuthorInput.value;
     let NumOfPages = bookPagesInput.value;
     let readStatus = bookReadInput.checked;
 
     addBookToLibrary(new Book(nameOfBook, authorOfBook, NumOfPages, readStatus));
     popUp.classList.remove("active");
+    e.preventDefault();
+    }
+    else {
+        addForm.setCustomValidity();
+        e.preventDefault();
+    }
 })
 
