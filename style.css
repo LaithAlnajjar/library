@@ -99,10 +99,11 @@ body {
     padding: 50px 350px;
     background-color: black;
     flex-grow: 1;
+
 }
 
 .card {
-    background-color: rgb(136, 136, 136);
+    background-color: rgb(29, 29, 29);
     color: white;
     padding: 50px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -146,9 +147,9 @@ body {
 }
 
 .active {
-  width: 700px;
-  height: 600px;
-  transition: 600ms;
+  width: 500px;
+  height: 500px;
+  transition: 100ms;
 }
 
 form {
@@ -169,4 +170,20 @@ form {
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  
+}
+
+label {
+  display: inline-block;
+  width: 45px;
+}
+
+.blur {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(10px); /* apply the blur */
+  pointer-events: none; /* make the overlay click-through */
+  transition: 100ms;
 }

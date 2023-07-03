@@ -15,6 +15,7 @@ const cardWrapper = document.querySelector(".card-wrapper");
 let deleteButtons = document.querySelectorAll(".delete-button");
 const cancelButton = document.querySelector(".cancel")
 let toggleButtons = document.querySelectorAll(".reset-button");
+const foreground = document.querySelector(".foreground");
 
 
 //Book object construction and storage
@@ -93,6 +94,7 @@ function displayCards() {
 
 addButton.addEventListener("click", (e) => {
     popUp.classList.add("active");
+    foreground.classList.add("blur");
 })
 
 addBookButton.addEventListener("click", (e) => {
@@ -105,6 +107,7 @@ addBookButton.addEventListener("click", (e) => {
 
     addBookToLibrary(new Book(nameOfBook, authorOfBook, NumOfPages, readStatus));
     popUp.classList.remove("active");
+    foreground.classList.remove("blur");
     e.preventDefault();
     resetForm();
     }
@@ -149,6 +152,7 @@ function activateToggle() {
 
 cancelButton.addEventListener("click", (e) => {
     popUp.classList.remove("active");
+    foreground.classList.remove("blur");
     e.preventDefault();
 })
 
@@ -157,3 +161,10 @@ Book.prototype.toggleRead = function() {
     this.read = this.read ? false : true;
 }
 
+let book1 = new Book("Atomic Habits", "Jack Grealish", 197, true);
+let book2 = new Book("EasyPeasy", "Hackauthor", 213, false);
+let book3 = new Book("AYO PIERRE", "Playboi", 654, false);
+
+addBookToLibrary(book1);
+addBookToLibrary(book2);
+addBookToLibrary(book3);
