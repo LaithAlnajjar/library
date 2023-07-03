@@ -1,3 +1,5 @@
+
+
 //DOM selection
 
 const container = document.querySelector(".container");
@@ -12,10 +14,14 @@ const addForm = document.querySelector("form");
 const cardWrapper = document.querySelector(".card-wrapper");
 let deleteButtons = document.querySelectorAll(".delete-button");
 const cancelButton = document.querySelector(".cancel")
+let toggleButtons = document.querySelectorAll(".reset-button");
+
 
 //Book object construction and storage
 
 let myLibrary = [];
+
+displayCards();
 
 function Book(name,author,pages,read) {
   this.name = name;
@@ -64,12 +70,23 @@ function displayCards() {
     deleteButton.textContent = "Delete";
     card.appendChild(deleteButton);
 
+    let toggleButton = document.createElement("button");
+    toggleButton.classList.add("toggle-button");
+    if(book.read) {
+        toggleButton.textContent = "read"
+    } else {
+        toggleButton.textContent = "not read"
+    }
+    card.appendChild(toggleButton);
+
     cardWrapper.appendChild(card);
     deleteButton.dataset.index = i;
+    toggleButton.dataset.index = i;
     i++;
 }
     )
     activateDelete();
+    activateToggle();
 }
 
 //Plus button
@@ -111,13 +128,32 @@ function activateDelete() {
         button.addEventListener("click", (e) => {
             myLibrary.splice(button.dataset.index, 1);
             displayCards();
-            console.log("Hi");
-    })});
+            
+    })})
 }
 
-//Cancel button
+function activateToggle() {
+     toggleButtons = document.querySelectorAll(".toggle-button");
+     toggleButtons.forEach(button => {
+        button.addEventListener("click", (e) => {
+            let currentBook = myLibrary[button.dataset.index];
+            currentBook.toggleRead();
+            if(currentBook.read) {
+                button.textContent = "read";
+            } else {
+                button.textContent = "not read"
+            }
+    })})
+}
+
 
 cancelButton.addEventListener("click", (e) => {
     popUp.classList.remove("active");
     e.preventDefault();
 })
+
+Book.prototype.toggleRead = function() {
+    console.log("Hi");
+    this.read = this.read ? false : true;
+}
+
