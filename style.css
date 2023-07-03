@@ -99,11 +99,6 @@ body {
     padding: 50px 350px;
     background-color: black;
     flex-grow: 1;
-    display: grid;
-    gap: 20px;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-
-    
 }
 
 .card {
@@ -126,8 +121,9 @@ body {
   background-color: #312244;
   color: white;
   border-radius: 100%;
-  width: 70px;
-  height: 70px;
+  width: 70px; display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   border: none;
   font-size: 3rem;
   font-weight: 900;
@@ -167,4 +163,10 @@ form {
   display: flex;
   align-items: space-between;
   gap: 10px;
+}
+
+.card-wrapper {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }

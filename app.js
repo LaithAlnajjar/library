@@ -1,26 +1,3 @@
-//Testing
-
-let book1 = {
-    name: "Hogwarts",
-    author: "Laith Goat",
-    pages: 2526,
-    read: false,
-}
-
-let book2 = {
-    name: "YOR",
-    author: "SGoat",
-    pages: 56,
-    read: true,
-}
-
-let book3 = {
-    name: "Hogwwewearts",
-    author: "W Goat",
-    pages: 6,
-    read: false,
-}
-
 //DOM selection
 
 const container = document.querySelector(".container");
@@ -32,10 +9,12 @@ const bookAuthorInput = document.querySelector("#author");
 const bookPagesInput = document.querySelector("#pages");
 const bookReadInput = document.querySelector("#read");
 const addForm = document.querySelector("form");
+const cardWrapper = document.querySelector(".card-wrapper");
+let deleteButtons = document.querySelectorAll(".delete-button");
 
 //Book object construction and storage
 
-let myLibrary = [book1, book2, book3];
+let myLibrary = [];
 
 function Book(name,author,pages,read) {
   this.name = name;
@@ -46,12 +25,17 @@ function Book(name,author,pages,read) {
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
-  displayCard(book);
+  displayCards();
 }
 
 //Book display
 
-function displayCard(book) {
+function displayCards() {
+
+    cardWrapper.textContent = "";
+
+    let i = 0;
+    myLibrary.forEach(book => {
     let card = document.createElement("div");
     card.classList.add("card");
 
@@ -61,22 +45,30 @@ function displayCard(book) {
     card.appendChild(bookTitle);
 
     let bookAuthor = document.createElement("div");
-    bookTitle.classList.add("book-author");
-    bookTitle.textContent = book.author;
+    bookAuthor.classList.add("book-author");
+    bookAuthor.textContent = book.author;
     card.appendChild(bookAuthor);
 
     let bookPages = document.createElement("div");
-    bookTitle.classList.add("book-pages");
-    bookTitle.textContent = book.pages;
+    bookPages.classList.add("book-pages");
+    bookPages.textContent = book.pages;
     card.appendChild(bookPages);
 
     let bookRead = document.createElement("div");
-    bookTitle.classList.add("book-read");
-    bookTitle.textContent = book.read;
+    bookRead.classList.add("book-read");1
     card.appendChild(bookRead);
 
+    let deleteButton = document.createElement("button");
+    deleteButton.classList.add("delete-button");
+    deleteButton.textContent = "Delete";
+    card.appendChild(deleteButton);
 
-    container.appendChild(card);
+    cardWrapper.appendChild(card);
+    deleteButton.dataset.index = i;
+    i++;
+}
+    )
+    activateDelete();
 }
 
 //Plus button
@@ -96,6 +88,7 @@ addBookButton.addEventListener("click", (e) => {
     addBookToLibrary(new Book(nameOfBook, authorOfBook, NumOfPages, readStatus));
     popUp.classList.remove("active");
     e.preventDefault();
+    resetForm();
     }
     else {
         addForm.setCustomValidity();
@@ -103,3 +96,20 @@ addBookButton.addEventListener("click", (e) => {
     }
 })
 
+function resetForm () {
+    bookNameInput.value = "";
+    bookAuthorInput.value = "";
+    bookPagesInput.value = "";
+    bookReadInput.checked = false;
+}
+
+function activateDelete() {
+    let deleteButtons = document.querySelectorAll(".delete-button");
+
+    deleteButtons.forEach(button => {
+        button.addEventListener("click", (e) => {
+            myLibrary.splice(button.dataset.index, 1);
+            displayCards();
+            console.log("Hi");
+    })});
+}
