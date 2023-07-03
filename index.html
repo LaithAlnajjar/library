@@ -18,34 +18,36 @@
 
         <div class="card-wrapper"></div>
        
-        <button class="add-book">
-            +
-        </button>
+        <button class="add-book"><span>+</span></button>
     </div>
     <div class="foreground "></div>
-    <div class="pop-up ">
+    <div class="pop-up">
 
         <form action="" method="get">
-            <div class="input">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" required>
-            </div>
-            <div class="input">
-                <label for="author">Author</label>
-                <input type="text" name="author" id="author" required>
-            </div>
-            <div class="input">
-                <label for="name">Pages</label>
-                <input type="number" name="pages" id="pages" required>
-            </div>
-            <div class="input">
-                <label for="name">Read</label>
-                <input type="checkbox" name="read" id="read" >
+            <div class="boxes-container">
+                <div class="input">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" required>
+                </div>
+                <div class="input">
+                    <label for="author">Author</label>
+                    <input type="text" name="author" id="author" required>
+                </div>
+                <div class="input">
+                    <label for="name">Pages</label>
+                    <input type="number" name="pages" id="pages" required>
+                </div>
+                <div class="input">
+                    <label for="name">Read</label>
+                    <input type="checkbox" name="read" id="read" >
+                </div>
             </div>
 
 
-            <input class="final-add-book" type="submit" value="Add Book">
-            <button class="cancel"> Cancel </button>
+            <div class="button-container">
+                <input class="final-add-book" type="submit" value="Add Book">
+                <button class="cancel"> Cancel </button>
+            </div>
         </form>
 
     </div>

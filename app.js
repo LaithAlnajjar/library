@@ -49,36 +49,39 @@ function displayCards() {
 
     let bookTitle = document.createElement("div");
     bookTitle.classList.add("book-title");
-    bookTitle.textContent = book.name;
+    bookTitle.textContent = "Name: " + book.name;
     card.appendChild(bookTitle);
 
     let bookAuthor = document.createElement("div");
     bookAuthor.classList.add("book-author");
-    bookAuthor.textContent = book.author;
+    bookAuthor.textContent = "Author: " + book.author;
     card.appendChild(bookAuthor);
 
     let bookPages = document.createElement("div");
     bookPages.classList.add("book-pages");
-    bookPages.textContent = book.pages;
+    bookPages.textContent = "Pages: " + book.pages;
     card.appendChild(bookPages);
 
     let bookRead = document.createElement("div");
     bookRead.classList.add("book-read");1
     card.appendChild(bookRead);
 
+    let toggleButton = document.createElement("button");
+    toggleButton.classList.add("toggle-button");
+    if(book.read) {
+        toggleButton.textContent = "Read"
+        toggleButton.classList.add("complete");
+    } else {
+        toggleButton.textContent = "Not Read"
+        toggleButton.classList.remove("complete");
+
+    }
+    card.appendChild(toggleButton);
+
     let deleteButton = document.createElement("button");
     deleteButton.classList.add("delete-button");
     deleteButton.textContent = "Delete";
     card.appendChild(deleteButton);
-
-    let toggleButton = document.createElement("button");
-    toggleButton.classList.add("toggle-button");
-    if(book.read) {
-        toggleButton.textContent = "read"
-    } else {
-        toggleButton.textContent = "not read"
-    }
-    card.appendChild(toggleButton);
 
     cardWrapper.appendChild(card);
     deleteButton.dataset.index = i;
@@ -96,6 +99,8 @@ addButton.addEventListener("click", (e) => {
     popUp.classList.add("active");
     foreground.classList.add("blur");
 })
+
+//Add book button
 
 addBookButton.addEventListener("click", (e) => {
 
@@ -117,6 +122,9 @@ addBookButton.addEventListener("click", (e) => {
     }
 })
 
+
+//Reset
+
 function resetForm () {
     bookNameInput.value = "";
     bookAuthorInput.value = "";
@@ -124,6 +132,7 @@ function resetForm () {
     bookReadInput.checked = false;
 }
 
+//Activate toggle and delete
 function activateDelete() {
     let deleteButtons = document.querySelectorAll(".delete-button");
 
@@ -142,14 +151,16 @@ function activateToggle() {
             let currentBook = myLibrary[button.dataset.index];
             currentBook.toggleRead();
             if(currentBook.read) {
-                button.textContent = "read";
+                button.textContent = "Read";
+                button.classList.add("complete");
             } else {
-                button.textContent = "not read"
+                button.textContent = "Not Read"
+                button.classList.remove("complete");
             }
     })})
 }
 
-
+//Cancel
 cancelButton.addEventListener("click", (e) => {
     popUp.classList.remove("active");
     foreground.classList.remove("blur");
@@ -161,9 +172,9 @@ Book.prototype.toggleRead = function() {
     this.read = this.read ? false : true;
 }
 
-let book1 = new Book("Atomic Habits", "Jack Grealish", 197, true);
-let book2 = new Book("EasyPeasy", "Hackauthor", 213, false);
-let book3 = new Book("AYO PIERRE", "Playboi", 654, false);
+let book1 = new Book("Atomic Habits", "James Clear", 320, true);
+let book2 = new Book("Random Book", "Random Author", 213, false);
+let book3 = new Book("The Goat", "Me", 654, false);
 
 addBookToLibrary(book1);
 addBookToLibrary(book2);

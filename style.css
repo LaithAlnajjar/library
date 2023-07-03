@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@200;400;600;800;1000&display=swap');
+
 /* CSS Reset */
 
 /* Box sizing rules */
@@ -5,6 +7,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  font-family: 'Ysabeau SC', sans-serif;
 }
 
 /* Remove default margin */
@@ -77,9 +80,20 @@ select {
 
 /* Start */
 
+html {
+  overflow-x: hidden;
+}
+
+button:hover {
+  cursor: pointer;
+  filter: brightness(75%);
+}
+
 body {
     display: flex;
     flex-direction: column;
+    height: 100%;
+    width: 100%;
 }
 
 .main-header {
@@ -89,9 +103,8 @@ body {
     align-items: center;
     padding: 70px 350px;
     color: white;
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: 800;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .container {
@@ -111,23 +124,29 @@ body {
     border-radius: 10px;
     height: 36vh;
     border-left: 9px solid #312244;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 20px;
+    font-size: 1.5rem;
 }
 
 .add-book {
   position: absolute;
   top: 85%;
   left: 85%;
-  display: grid;
-  place-content: center;
   background-color: #312244;
-  color: white;
-  border-radius: 100%;
-  width: 70px; display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   border: none;
-  font-size: 3rem;
-  font-weight: 900;
+  border-radius: 100%;
+  width: 75px;
+  height: 75px;
+  vertical-align: middle;
+}
+
+.add-book span {
+  font-size: 2.5rem;
+  font-weight: 1000;
+  color: white;
 }
 
 .pop-up {
@@ -141,28 +160,32 @@ body {
   transform: translateY(-50%);
   width: 0%;
   height: 0%;
-  background-color: white;
+  background-color: black;
+  border-bottom: 20px solid #312244;
+  border-top: 20px solid #312244;
+
   border-radius: 10px;
   overflow: hidden;
+  color: white;
 }
 
 .active {
   width: 500px;
   height: 500px;
-  transition: 100ms;
+  transition: 150ms ease-out;
 }
+
 
 form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: start;
+  align-items: flex-start;
   gap: 50px;
 }
 
 .input {
   display: flex;
-  align-items: space-between;
+  align-items: center;
   gap: 10px;
 }
 
@@ -175,7 +198,9 @@ form {
 
 label {
   display: inline-block;
-  width: 45px;
+  width: 95px;
+  font-weight: 600;
+  font-size: 1.3rem;
 }
 
 .blur {
@@ -185,5 +210,65 @@ label {
   height: 100%;
   backdrop-filter: blur(10px); /* apply the blur */
   pointer-events: none; /* make the overlay click-through */
-  transition: 100ms;
+  transition: 150ms ease-in;
 }
+
+.add-book:hover {
+  cursor: pointer;
+  filter: brightness(75%);
+
+}
+
+.boxes-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.button-container {
+  display: flex;
+  gap: 30px;
+}
+
+.final-add-book, .cancel {
+  width:100px;
+  height: 55px;
+  background-color: #312244;
+  color: white;
+  font-weight: 800;
+  border: none;
+  border-radius: 20px;
+}
+
+.final-add-book:hover, .cancel:hover {
+  cursor: pointer;
+  filter: brightness(75%);
+}
+
+#read {
+  width: 20px;
+  height: 20px;
+}
+
+.delete-button, .toggle-button {
+  height: 200px;
+  background-color: #312244;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  padding: 5px 20px;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  width: 150px;
+}
+
+.toggle-button {
+  background-color: rgb(90, 2, 2);
+}
+
+.complete {
+  background-color: rgb(46, 75, 46);
+}
+
+
