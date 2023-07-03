@@ -11,6 +11,7 @@ const bookReadInput = document.querySelector("#read");
 const addForm = document.querySelector("form");
 const cardWrapper = document.querySelector(".card-wrapper");
 let deleteButtons = document.querySelectorAll(".delete-button");
+const cancelButton = document.querySelector(".cancel")
 
 //Book object construction and storage
 
@@ -113,3 +114,10 @@ function activateDelete() {
             console.log("Hi");
     })});
 }
+
+//Cancel button
+
+cancelButton.addEventListener("click", (e) => {
+    popUp.classList.remove("active");
+    e.preventDefault();
+})
