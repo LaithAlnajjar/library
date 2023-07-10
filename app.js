@@ -24,16 +24,19 @@ let myLibrary = [];
 
 displayCards();
 
-function Book(name,author,pages,read) {
-  this.name = name;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+class Book {
+    constructor(name, author, pages, read) {
+        this.name = name;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
 }
 
+
 function addBookToLibrary(book) {
-  myLibrary.push(book);
-  displayCards();
+    myLibrary.push(book);
+    displayCards();
 }
 
 //Book display
@@ -44,50 +47,50 @@ function displayCards() {
 
     let i = 0;
     myLibrary.forEach(book => {
-    let card = document.createElement("div");
-    card.classList.add("card");
+        let card = document.createElement("div");
+        card.classList.add("card");
 
-    let bookTitle = document.createElement("div");
-    bookTitle.classList.add("book-title");
-    bookTitle.textContent = "Name: " + book.name;
-    card.appendChild(bookTitle);
+        let bookTitle = document.createElement("div");
+        bookTitle.classList.add("book-title");
+        bookTitle.textContent = "Name: " + book.name;
+        card.appendChild(bookTitle);
 
-    let bookAuthor = document.createElement("div");
-    bookAuthor.classList.add("book-author");
-    bookAuthor.textContent = "Author: " + book.author;
-    card.appendChild(bookAuthor);
+        let bookAuthor = document.createElement("div");
+        bookAuthor.classList.add("book-author");
+        bookAuthor.textContent = "Author: " + book.author;
+        card.appendChild(bookAuthor);
 
-    let bookPages = document.createElement("div");
-    bookPages.classList.add("book-pages");
-    bookPages.textContent = "Pages: " + book.pages;
-    card.appendChild(bookPages);
+        let bookPages = document.createElement("div");
+        bookPages.classList.add("book-pages");
+        bookPages.textContent = "Pages: " + book.pages;
+        card.appendChild(bookPages);
 
-    let bookRead = document.createElement("div");
-    bookRead.classList.add("book-read");1
-    card.appendChild(bookRead);
+        let bookRead = document.createElement("div");
+        bookRead.classList.add("book-read"); 1
+        card.appendChild(bookRead);
 
-    let toggleButton = document.createElement("button");
-    toggleButton.classList.add("toggle-button");
-    if(book.read) {
-        toggleButton.textContent = "Read"
-        toggleButton.classList.add("complete");
-    } else {
-        toggleButton.textContent = "Not Read"
-        toggleButton.classList.remove("complete");
+        let toggleButton = document.createElement("button");
+        toggleButton.classList.add("toggle-button");
+        if (book.read) {
+            toggleButton.textContent = "Read"
+            toggleButton.classList.add("complete");
+        } else {
+            toggleButton.textContent = "Not Read"
+            toggleButton.classList.remove("complete");
 
+        }
+        card.appendChild(toggleButton);
+
+        let deleteButton = document.createElement("button");
+        deleteButton.classList.add("delete-button");
+        deleteButton.textContent = "Delete";
+        card.appendChild(deleteButton);
+
+        cardWrapper.appendChild(card);
+        deleteButton.dataset.index = i;
+        toggleButton.dataset.index = i;
+        i++;
     }
-    card.appendChild(toggleButton);
-
-    let deleteButton = document.createElement("button");
-    deleteButton.classList.add("delete-button");
-    deleteButton.textContent = "Delete";
-    card.appendChild(deleteButton);
-
-    cardWrapper.appendChild(card);
-    deleteButton.dataset.index = i;
-    toggleButton.dataset.index = i;
-    i++;
-}
     )
     activateDelete();
     activateToggle();
@@ -104,17 +107,17 @@ addButton.addEventListener("click", (e) => {
 
 addBookButton.addEventListener("click", (e) => {
 
-    if(addForm.checkValidity()){
+    if (addForm.checkValidity()) {
         let nameOfBook = bookNameInput.value;
-    let authorOfBook = bookAuthorInput.value;
-    let NumOfPages = bookPagesInput.value;
-    let readStatus = bookReadInput.checked;
+        let authorOfBook = bookAuthorInput.value;
+        let NumOfPages = bookPagesInput.value;
+        let readStatus = bookReadInput.checked;
 
-    addBookToLibrary(new Book(nameOfBook, authorOfBook, NumOfPages, readStatus));
-    popUp.classList.remove("active");
-    foreground.classList.remove("blur");
-    e.preventDefault();
-    resetForm();
+        addBookToLibrary(new Book(nameOfBook, authorOfBook, NumOfPages, readStatus));
+        popUp.classList.remove("active");
+        foreground.classList.remove("blur");
+        e.preventDefault();
+        resetForm();
     }
     else {
         addForm.setCustomValidity();
@@ -125,7 +128,7 @@ addBookButton.addEventListener("click", (e) => {
 
 //Reset
 
-function resetForm () {
+function resetForm() {
     bookNameInput.value = "";
     bookAuthorInput.value = "";
     bookPagesInput.value = "";
@@ -140,24 +143,26 @@ function activateDelete() {
         button.addEventListener("click", (e) => {
             myLibrary.splice(button.dataset.index, 1);
             displayCards();
-            
-    })})
+
+        })
+    })
 }
 
 function activateToggle() {
-     toggleButtons = document.querySelectorAll(".toggle-button");
-     toggleButtons.forEach(button => {
+    toggleButtons = document.querySelectorAll(".toggle-button");
+    toggleButtons.forEach(button => {
         button.addEventListener("click", (e) => {
             let currentBook = myLibrary[button.dataset.index];
             currentBook.toggleRead();
-            if(currentBook.read) {
+            if (currentBook.read) {
                 button.textContent = "Read";
                 button.classList.add("complete");
             } else {
                 button.textContent = "Not Read"
                 button.classList.remove("complete");
             }
-    })})
+        })
+    })
 }
 
 //Cancel
@@ -167,7 +172,7 @@ cancelButton.addEventListener("click", (e) => {
     e.preventDefault();
 })
 
-Book.prototype.toggleRead = function() {
+Book.prototype.toggleRead = function () {
     console.log("Hi");
     this.read = this.read ? false : true;
 }
